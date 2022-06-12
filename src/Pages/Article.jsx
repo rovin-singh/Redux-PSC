@@ -6,11 +6,18 @@ import {
   Heading,
   Image,
   Stack,
-  Text,
+  Text
 } from "@chakra-ui/react";
-import React from "react";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBlogPost } from "../Redux/Blogs/actions";
 const Article = () => {
+  const dispatch = useDispatch();
+  const { blogs } = useSelector((state) => state.blogs);
+  useEffect(() => {
+    dispatch(fetchBlogPost());
+    console.log(blogs);
+  }, []);
   return (
     <Container maxW={"3xl"} pb={"4rem"}>
       <Box textAlign="center" py={{ base: 5, md: 10 }}>
